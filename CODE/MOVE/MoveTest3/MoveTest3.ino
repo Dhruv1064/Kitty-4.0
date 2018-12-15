@@ -42,7 +42,7 @@ void loop() {
         analogWrite(motor1pwm , 50);
         
       }
-      if(x == 3 || (-theta1c+26)>62.513){
+      if(x == 3 || (-theta1c+26)>62.513){         //62.513 65.0187
         analogWrite(motor1pwm , 0);
         x=3;
         }
@@ -50,7 +50,7 @@ void loop() {
         digitalWrite(motor2, x - 4 );
         analogWrite(motor2pwm , 50);
         }
-      if(x == 6 || (-theta2c/4)>51.58){
+      if(x == 6 || (-theta2c/4)>51.58){           //51.58 51.66
         analogWrite(motor2pwm , 0);
         x=6;
         }

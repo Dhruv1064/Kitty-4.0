@@ -1,4 +1,4 @@
-#define motor1  30
+#define motor1  36
 #define motor2  29
 #define motor1pwm  5
 #define motor2pwm  4
@@ -17,6 +17,7 @@ void setup() {
   
   pinMode(18, INPUT_PULLUP);
   pinMode(9, INPUT_PULLUP);
+  
   attachInterrupt(5, ai5_4, RISING);
 
   //Pins for Motors
@@ -42,7 +43,7 @@ void loop() {
         analogWrite(motor1pwm , 50);
         
       }
-      if(x == 3 || (-theta1c+26)>69.71){
+      if(x == 3 || (-theta1c+26)>72.815){     //69.71
         analogWrite(motor1pwm , 0);
         x=3;
         }
@@ -50,7 +51,7 @@ void loop() {
         digitalWrite(motor2, x - 4 );
         analogWrite(motor2pwm , 50);
         }
-      if(x == 6 || (-theta2c/4)>50.75){
+      if(x == 6 || (-theta2c/4)>49.55){       //50.75
         analogWrite(motor2pwm , 0);
         x=6;
         }
