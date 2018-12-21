@@ -70,13 +70,13 @@ void setup()
 
 void loop()
 {
-    for (float u = 0.005; u < 10.68 ; u = u + 0.89)    
+    for (float u = 0.0001; u < 10.68 ; u = u + 0.89)    
     {
 
       float xe_4 = -6 + u ;
       float ye_4 = -45;
 
-      float xe_3 = 1.333 + u ;
+      float xe_3 = 1.3333 + u ;
       float ye_3 = -45 ;
 
       if ( counter1_3 != temp1_3 )
@@ -151,7 +151,7 @@ void loop()
         c2_3 = Kp2 * error2_3 + Kd2 * (dif_error2_3);
 
         correction1_3 = map(abs(c1_3), 0, 30, 0, 50); //50
-        correction2_3 = map(abs(c2_3), 0, 35, 0, 150);//150
+        correction2_3 = map(abs(c2_3), 0, 35, 0, 175);//175
 
 //        Serial.print("x=");
 //        Serial.println(xe_3);       
@@ -190,28 +190,50 @@ void loop()
         c2_4 = Kp2 * error2_4 + Kd2 * (dif_error2_4);
 
         correction1_4 = map(abs(c1_4), 0, 30, 0, 50);     //50
-        correction2_4 = map(abs(c2_4), 0, 35, 0, 150);    //150
+        correction2_4 = map(abs(c2_4), 0, 35, 0, 175);    //175
       
+//        Serial.print("x=");
+//        Serial.println(xe_4);       
+//        Serial.print("y=");
+//        Serial.println(ye_4);
+//        Serial.print("theta1_4=");
+//        Serial.println(theta1_4);
+//        Serial.print("theta1c_4=");
+//        Serial.println(theta1c_4-72.815);
+//        Serial.print("theta2c_4=");
+//        Serial.println(theta2c_4-49.55);        
+//        Serial.print("theta2_4=");
+//        Serial.println(theta2_4);
+//        Serial.print("c1_4=");
+//        Serial.println(c1_4);
+//        Serial.print("c2_4=");
+//        Serial.println(c2_4);
+//        Serial.print("pwm1=");
+//        Serial.println(correction1_4);
+//        Serial.print("pwm2=");
+//        Serial.println(correction2_4);
+//        Serial.println("------------------------");
+
         Serial.print("x=");
-        Serial.println(xe_4);       
+        Serial.println(xe_3);       
         Serial.print("y=");
-        Serial.println(ye_4);
-        Serial.print("theta1_4=");
-        Serial.println(theta1_4);
-        Serial.print("theta1c_4=");
-        Serial.println(theta1c_4-72.815);
-        Serial.print("theta2c_4=");
-        Serial.println(theta2c_4-49.55);        
-        Serial.print("theta2_4=");
-        Serial.println(theta2_4);
-        Serial.print("c1_4=");
-        Serial.println(c1_4);
-        Serial.print("c2_4=");
-        Serial.println(c2_4);
+        Serial.println(ye_3);
+        Serial.print("theta1_3=");
+        Serial.println(theta1_3);
+        Serial.print("theta1c_3=");
+        Serial.println(theta1c_3-62.513);
+        Serial.print("theta2c_3=");
+        Serial.println(theta2c_3-51.58);        
+        Serial.print("theta2_3=");
+        Serial.println(theta2_3);
+        Serial.print("c1_3=");
+        Serial.println(c1_3);
+        Serial.print("c2_3=");
+        Serial.println(c2_3);
         Serial.print("pwm1=");
-        Serial.println(correction1_4);
+        Serial.println(correction1_3);
         Serial.print("pwm2=");
-        Serial.println(correction2_4);
+        Serial.println(correction2_3);
         Serial.println("------------------------");
    
         if (error1_3 < 0 )
@@ -379,28 +401,50 @@ void loop()
         c2_4 = Kp2 * error2_4 + Kd2 * (dif_error2_4);
 
         correction1_4 = map(abs(c1_4), 0, 30, 0, 50);     //50
-        correction2_4 = map(abs(c2_4), 0, 35, 0, 150);    //150
+        correction2_4 = map(abs(c2_4), 0, 35, 0, 175);    //175
       
+//        Serial.print("x=");
+//        Serial.println(xe_4);       
+//        Serial.print("y=");
+//        Serial.println(ye_4);
+//        Serial.print("theta1_4=");
+//        Serial.println(theta1_4);
+//        Serial.print("theta1c_4=");
+//        Serial.println(theta1c_4-72.815);
+//        Serial.print("theta2c_4=");
+//        Serial.println(theta2c_4-49.55);        
+//        Serial.print("theta2_4=");
+//        Serial.println(theta2_4);
+//        Serial.print("c1_4=");
+//        Serial.println(c1_4);
+//        Serial.print("c2_4=");
+//        Serial.println(c2_4);
+//        Serial.print("pwm1=");
+//        Serial.println(correction1_4);
+//        Serial.print("pwm2=");
+//        Serial.println(correction2_4);
+//        Serial.println("------------------------");
+
         Serial.print("x=");
-        Serial.println(xe_4);       
+        Serial.println(xe_3);       
         Serial.print("y=");
-        Serial.println(ye_4);
-        Serial.print("theta1_4=");
-        Serial.println(theta1_4);
-        Serial.print("theta1c_4=");
-        Serial.println(theta1c_4-72.815);
-        Serial.print("theta2c_4=");
-        Serial.println(theta2c_4-49.55);        
-        Serial.print("theta2_4=");
-        Serial.println(theta2_4);
-        Serial.print("c1_4=");
-        Serial.println(c1_4);
-        Serial.print("c2_4=");
-        Serial.println(c2_4);
+        Serial.println(ye_3);
+        Serial.print("theta1_3=");
+        Serial.println(theta1_3);
+        Serial.print("theta1c_3=");
+        Serial.println(theta1c_3-62.513);
+        Serial.print("theta2c_3=");
+        Serial.println(theta2c_3-51.58);        
+        Serial.print("theta2_3=");
+        Serial.println(theta2_3);
+        Serial.print("c1_3=");
+        Serial.println(c1_3);
+        Serial.print("c2_3=");
+        Serial.println(c2_3);
         Serial.print("pwm1=");
-        Serial.println(correction1_4);
+        Serial.println(correction1_3);
         Serial.print("pwm2=");
-        Serial.println(correction2_4);
+        Serial.println(correction2_3);
         Serial.println("------------------------");
    
         if (error1_3 < 0 ){
@@ -529,7 +573,7 @@ void loop()
         c2_3 = Kp2 * error2_3 + Kd2 * (dif_error2_3);
 
         correction1_3 = map(abs(c1_3), 0, 30, 0, 50);     
-        correction2_3 = map(abs(c2_3), 0, 35, 0, 150);     //150
+        correction2_3 = map(abs(c2_3), 0, 35, 0, 175);     //175
 
 //        Serial.print("x=");
 //        Serial.println(xe_3);       
@@ -568,28 +612,50 @@ void loop()
         c2_4 = Kp2 * error2_4 + Kd2 * (dif_error2_4);
 
         correction1_4 = map(abs(c1_4), 0, 70, 0, 80);   //80
-        correction2_4 = map(abs(c2_4), 0, 90, 0, 175);   //150
+        correction2_4 = map(abs(c2_4), 0, 90, 0, 175);   //175
       
+//        Serial.print("x=");
+//        Serial.println(xe_4);       
+//        Serial.print("y=");
+//        Serial.println(ye_4);
+//        Serial.print("theta1_4=");
+//        Serial.println(theta1_4);
+//        Serial.print("theta1c_4=");
+//        Serial.println(theta1c_4-72.815);
+//        Serial.print("theta2c_4=");
+//        Serial.println(theta2c_4-49.55);        
+//        Serial.print("theta2_4=");
+//        Serial.println(theta2_4);
+//        Serial.print("c1_4=");
+//        Serial.println(c1_4);
+//        Serial.print("c2_4=");
+//        Serial.println(c2_4);
+//        Serial.print("pwm1=");
+//        Serial.println(correction1_4);
+//        Serial.print("pwm2=");
+//        Serial.println(correction2_4);
+//        Serial.println("------------------------");
+
         Serial.print("x=");
-        Serial.println(xe_4);       
+        Serial.println(xe_3);       
         Serial.print("y=");
-        Serial.println(ye_4);
-        Serial.print("theta1_4=");
-        Serial.println(theta1_4);
-        Serial.print("theta1c_4=");
-        Serial.println(theta1c_4-72.815);
-        Serial.print("theta2c_4=");
-        Serial.println(theta2c_4-49.55);        
-        Serial.print("theta2_4=");
-        Serial.println(theta2_4);
-        Serial.print("c1_4=");
-        Serial.println(c1_4);
-        Serial.print("c2_4=");
-        Serial.println(c2_4);
+        Serial.println(ye_3);
+        Serial.print("theta1_3=");
+        Serial.println(theta1_3);
+        Serial.print("theta1c_3=");
+        Serial.println(theta1c_3-62.513);
+        Serial.print("theta2c_3=");
+        Serial.println(theta2c_3-51.58);        
+        Serial.print("theta2_3=");
+        Serial.println(theta2_3);
+        Serial.print("c1_3=");
+        Serial.println(c1_3);
+        Serial.print("c2_3=");
+        Serial.println(c2_3);
         Serial.print("pwm1=");
-        Serial.println(correction1_4);
+        Serial.println(correction1_3);
         Serial.print("pwm2=");
-        Serial.println(correction2_4);
+        Serial.println(correction2_3);
         Serial.println("------------------------");
    
         if (error1_3 < 0 )

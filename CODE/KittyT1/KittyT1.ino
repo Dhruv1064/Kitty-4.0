@@ -196,7 +196,7 @@ void loop()
         prev_error2_2 = error2_2;
 
         correction1_2 = map(abs(c1_2), 0, 30, 0, 50);     //50
-        correction2_2 = map(abs(c2_2), 0, 35, 0, 150);    //150
+        correction2_2 = map(abs(c2_2), 0, 35, 0, 175);    //175
 
         Serial.print("x=");
         Serial.println(xe_2);       
@@ -346,7 +346,7 @@ void loop()
         prev_error2_1 = error2_1;
     
         correction1_1 = map(abs(c1_1), 0, 30, 0, 50);       //50
-        correction2_1 = map(abs(c2_1), 0, 35, 0, 150);      //150
+        correction2_1 = map(abs(c2_1), 0, 35, 0, 175);      //175
 
 //        Serial.print("x=");
 //        Serial.println(xe_1);       
@@ -536,7 +536,7 @@ void loop()
         prev_error2_1 = error2_1;
 
         correction1_1 = map(abs(c1_1), 0, 30, 0, 50);     //50
-        correction2_1 = map(abs(c2_1), 0, 35, 0, 150);     
+        correction2_1 = map(abs(c2_1), 0, 35, 0, 175);     
 
 //        Serial.print("x=");
 //        Serial.println(xe_1);       
@@ -576,7 +576,7 @@ void loop()
         prev_error2_2 = error2_2;
 
         correction1_2 = map(abs(c1_2), 0, 30, 0, 50);   //50
-        correction2_2 = map(abs(c2_2), 0, 35, 0, 150);    //150
+        correction2_2 = map(abs(c2_2), 0, 35, 0, 175);    //175
 
         Serial.print("x=");
         Serial.println(xe_2);       
