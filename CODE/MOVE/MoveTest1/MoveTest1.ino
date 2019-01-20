@@ -1,7 +1,7 @@
 #define motor1  27
 #define motor2  26
-#define motor1pwm  3
-#define motor2pwm  2
+#define motor1pwm  2
+#define motor2pwm  11
 
 float theta1c=0, theta2c=0;
 int x;

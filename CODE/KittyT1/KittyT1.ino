@@ -1,7 +1,7 @@
 #define motor1_1  27          //                                                      1-hip        2-knee
 #define motor2_1  26
-#define motor1pwm_1  3
-#define motor2pwm_1  2
+#define motor1pwm_1  2
+#define motor2pwm_1  11
 
 #define motor1_2  30
 #define motor2_2  32
