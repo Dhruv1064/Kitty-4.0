@@ -1,7 +1,7 @@
 #define motor1_1  27          
 #define motor2_1  26
-#define motor1pwm_1  3
-#define motor2pwm_1  2
+#define motor1pwm_1  2
+#define motor2pwm_1  11
 
 #define motor1_2  30
 #define motor2_2  32
@@ -33,7 +33,7 @@ volatile int temp2_1 , counter2_1 = 0;
 volatile int temp1_2 , counter1_2 = 0;
 volatile int temp2_2 , counter2_2 = 0;
 
-int times=3;
+int times=3,check=1;
 
 void setup()
 {
@@ -74,6 +74,70 @@ void setup()
 
 void loop()
 {
+        if(check)
+        {
+            if ( counter1_1 != temp1_1 ){
+              temp1_1 = counter1_1;
+      
+              if (counter1_1 > 600)
+              {
+                counter1_1 = 0;
+              }
+              theta1c_1 = (counter1_1 * 0.6);
+            }
+      
+            if ( counter2_1 != temp2_1 ){
+              temp2_1 = counter2_1;
+      
+              if (counter2_1 > 600)
+              {
+                counter2_1 = 0;
+              }
+              theta2c_1 = (counter2_1 * 0.6);
+            }
+      
+            if ( counter1_2 != temp1_2 ){
+              temp1_2 = counter1_2;
+      
+              if (counter1_2 > 600){
+                counter1_2 = 0;
+                }
+      
+              theta1c_2 = (counter1_2 * 0.6);
+            }
+      
+            if ( counter2_2 != temp2_2 ){
+              temp2_2 = counter2_2;
+      
+              if (counter2_2 > 600)
+              {
+                counter2_2 = 0;
+              }
+              theta2c_2 = -(counter2_2 * 0.6);
+            }
+
+            int t1,t2,t3,t4;
+            int adr=0;
+
+            
+            EEPROM.get(adr,t1);
+            adr+=sizeof(float);
+            EEPROM.get(adr,t2);
+            adr+=sizeof(float);
+            EEPROM.get(adr,t3);
+            adr+=sizeof(float);
+            EEPROM.get(adr,t4);
+            adr+=sizeof(float);
+            
+            if(EEPROM.get(t1>0)
+            {
+                
+            }
+            
+            check=0;
+        }
+        
+        
         while(times--)
         {
               
@@ -691,13 +755,13 @@ void loop()
       
         int address = 0;
         
-        int theta1_last_1 = EEPROM.put(address,theta1c_1 + 53.728);
+        int theta1_last_1 = EEPROM.put(address,theta1c_1);
         address+=sizeof(float);
-        int theta2_last_1 = EEPROM.put(address,theta2c_1 + 42.68);
+        int theta2_last_1 = EEPROM.put(address,theta2c_1);
         address+=sizeof(float);
-        int theta1_last_2 = EEPROM.put(address,theta1c_2 + 58.8795);
+        int theta1_last_2 = EEPROM.put(address,theta1c_2);
         address+=sizeof(float);
-        int theta2_last_2 = EEPROM.put(address,theta2c_2 + 50.4);
+        int theta2_last_2 = EEPROM.put(address,theta2c_2);
         address+=sizeof(float);
         
 }
