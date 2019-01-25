@@ -150,8 +150,8 @@ void loop()
         c1_3 = Kp1 * error1_3 + Kd1 * (dif_error1_3);
         c2_3 = Kp2 * error2_3 + Kd2 * (dif_error2_3);
 
-        correction1_3 = map(abs(c1_3), 0, 30, 0, 50); //50
-        correction2_3 = map(abs(c2_3), 0, 35, 0, 175);//175
+        correction1_3 = map(abs(c1_3), 0, 30, 0, 45); //50
+        correction2_3 = map(abs(c2_3), 0, 35, 0, 125);//175
 
 //        Serial.print("x=");
 //        Serial.println(xe_3);       
@@ -361,8 +361,8 @@ void loop()
         c1_3 = Kp1 * error1_3 + Kd1 * (dif_error1_3);
         c2_3 = Kp2 * error2_3 + Kd2 * (dif_error2_3);
 
-        correction1_3 = map(abs(c1_3), 0, 70, 0, 80);       //80
-        correction2_3 = map(abs(c2_3), 0, 90, 0, 175);       //175
+        correction1_3 = map(abs(c1_3), 0, 70, 0, 65);       //80
+        correction2_3 = map(abs(c2_3), 0, 90, 0, 150);       //175
 
 //        Serial.print("x=");
 //        Serial.println(xe_3);       
@@ -572,8 +572,8 @@ void loop()
         c1_3 = Kp1 * error1_3 + Kd1 * (dif_error1_3);
         c2_3 = Kp2 * error2_3 + Kd2 * (dif_error2_3);
 
-        correction1_3 = map(abs(c1_3), 0, 30, 0, 50);     
-        correction2_3 = map(abs(c2_3), 0, 35, 0, 175);     //175
+        correction1_3 = map(abs(c1_3), 0, 30, 0, 45);     
+        correction2_3 = map(abs(c2_3), 0, 35, 0, 125);     //175
 
 //        Serial.print("x=");
 //        Serial.println(xe_3);       

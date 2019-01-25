@@ -3,7 +3,7 @@
 #define motor1pwm  3
 #define motor2pwm  2
 
-float theta1c=0, theta2c=0;M
+float theta1c=0, theta2c=0;
 int x;
 
 volatile int temp1, counter1 = 0;

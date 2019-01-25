@@ -87,9 +87,9 @@ void loop() {
     
     Matrix.Invert((double*)M,4);
 
-    Matrix.
+    Matrix.Invert((double*));
       
-
+//  }
 //   float X1=(1/(J1*J4-J2*J3))*(J4*(-(sin(w*t))*a*w)-J2*(cos(w*t))*b*w);
 //   float X2=(1/(J1*J4-J2*J3))*(-J3*(-(sin(w*t))*a*w)+J1*(cos(w*t))*b*w);
 //   float X1f=(1/(J1f*J4f-J2f*J3f))*(J4f*(-(sin(w*(t+1)))*a*w)-J2f*(cos(w*(t+1)))*b*w);
