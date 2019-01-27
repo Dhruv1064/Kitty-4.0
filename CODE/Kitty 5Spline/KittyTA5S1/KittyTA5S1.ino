@@ -12,17 +12,17 @@
 
 SoftwareSerial mySerial1(10, 11); // RX, TX          
 
-int h=1,aa=2;
+//int h=1,aa=2;
 
 double alpha_1;
-float w = 0.1, theta1c_1 = 0.0 , theta2c_1 = 0.0, theta1_1, theta2_1, error1_1, error2_1, correction1_1, correction2_1, c1_1, c2_1;
-float dif_error1_1 , prev_error1_1 = 0.0 , dif_error2_1 , prev_error2_1 = 0.0;
+double w = 0.1, theta1c_1 = 0.0 , theta2c_1 = 0.0, theta1_1, theta2_1, error1_1, error2_1, correction1_1, correction2_1, c1_1, c2_1;
+double dif_error1_1 , prev_error1_1 = 0.0 , dif_error2_1 , prev_error2_1 = 0.0;
 
 double alpha_2;
-float theta1c_2 = 0.0 , theta2c_2 = 0.0, theta1_2, theta2_2, error1_2, error2_2, correction1_2, correction2_2, c1_2, c2_2;
-float dif_error1_2 , prev_error1_2 = 0.0 , dif_error2_2 , prev_error2_2 = 0.0;
+double theta1c_2 = 0.0 , theta2c_2 = 0.0, theta1_2, theta2_2, error1_2, error2_2, correction1_2, correction2_2, c1_2, c2_2;
+double dif_error1_2 , prev_error1_2 = 0.0 , dif_error2_2 , prev_error2_2 = 0.0;
 
-float Kp1 = 1.5, Kp2 = 1.5, Kd1 = 2.0, Kd2 = 2.0 ;
+double Kp1 = 1.5, Kp2 = 1.5, Kd1 = 2.0, Kd2 = 2.0 ;
 
 int l1 = 25, l2 = 25, a = 20, b = 7;
 
@@ -32,7 +32,11 @@ volatile int temp2_1 , counter2_1 = 0;
 volatile int temp1_2 , counter1_2 = 0;
 volatile int temp2_2 , counter2_2 = 0;
 
-float time,x1=0,x=0,x3,v1,v2,v3,a1,a2,a3;
+double theta1AT1=0,theta1AT2=0,theta1AT3=0,theta1_AT1=0,theta1_AT2=0,theta1_AT3=0,theta1__AT1=0,theta1__AT2=0,theta1__AT3=0;
+double theta2AT1=0,theta2AT2=0,theta2AT3=0,theta2_AT1=0,theta2_AT2=0,theta2_AT3=0,theta2__AT1=0,theta2__AT2=0,theta2__AT3=0;
+
+double theta1AT1_2=0,theta1AT2_2=0,theta1AT3_2=0,theta1_AT1_2=0,theta1_AT2_2=0,theta1_AT3_2=0,theta1__AT1_2=0,theta1__AT2_2=0,theta1__AT3_2=0;
+double theta2AT1_2=0,theta2AT2_2=0,theta2AT3_2=0,theta2_AT1_2=0,theta2_AT2_2=0,theta2_AT3_2=0,theta2__AT1_2=0,theta2__AT2_2=0,theta2__AT3_2=0;
 
 void setup()
 {
@@ -68,21 +72,18 @@ void setup()
   pinMode(motor1pwm_2, OUTPUT);
   pinMode(motor2_2, OUTPUT);
   pinMode(motor2pwm_2, OUTPUT);
-
-  
-
 }
 
 void loop()
 {
-        for (float t = 0, u=0;t < 3.139,u < 5.34; t = t + 0.523,u = u + 0.89)
+        for (double t = 0.1666, u=0.887;t < 1,u < 5.333; t = t + 0.1666,u = u + 0.887)
         {
 
-      float xe_1 = 4 + 8 * cos(t);        
-      float ye_1 = -45 + 6*sin(t);
+//      double xe_1 = 4 + 8 * cos(t);        
+//      double ye_1 = -45 + 6 * sin(t);
 
-      float xe_2 = 4.66 + u ;
-      float ye_2 = -45 ;
+      double xe_2 = 4.66 + u ;
+      double ye_2 = -45 ;
 
       if ( counter1_1 != temp1_1 ){
         temp1_1 = counter1_1;
@@ -126,26 +127,30 @@ void loop()
 
 
      
-        if (atan(ye_1/xe_1)>0)
-        {
+        if (atan(ye_1/xe_1)>0){
           alpha_1 = atan(ye_1 / xe_1) - 3.14159;
         }
-        else
-        {
+        else{
           alpha_1 = atan(ye_1 / xe_1);
         }
-
-        if (atan(ye_2 / xe_2) > 0)
-        {
+        if (atan(ye_2 / xe_2) > 0){
           alpha_2 = atan(ye_2 / xe_2) - 3.14159;
         }
-        else
-         { alpha_2 = atan(ye_2 / xe_2);
+        else{ 
+          alpha_2 = atan(ye_2 / xe_2);
          }
     
-        theta1_1 = 57.2958 * (cosine_rule(l1,l2, sqrt(xe_1 * xe_1 + ye_1 * ye_1)) + alpha_1);        
-        theta2_1 = 57.2958 * (-3.14159 + cosine_rule(sqrt(xe_1 * xe_1 + ye_1 * ye_1), l1, l2));
+//        theta1_1 = 57.2958 * (cosine_rule(l1,l2, sqrt(xe_1 * xe_1 + ye_1 * ye_1)) + alpha_1);        
+//        theta2_1 = 57.2958 * (-3.14159 + cosine_rule(sqrt(xe_1 * xe_1 + ye_1 * ye_1), l1, l2));
 
+        if(t<0.5){
+            theta1_1=theta(theta1AT1,theta1_AT1,theta1__AT1,theta1AT2,theta1_AT2,theta1__AT2,t);
+            theta2_1=theta(theta2AT1,theta2_AT1,theta2__AT1,theta2AT2,theta2_AT2,theta2__AT2,t);
+        }
+        else{
+            theta1_1=theta(theta1AT2,theta1_AT2,theta1__AT2,theta1AT3,theta1_AT3,theta1__AT3,t);
+            theta2_1=theta(theta2AT2,theta2_AT2,theta2__AT2,theta2AT3,theta2_AT3,theta2__AT3,t);
+        }
         error1_1 = theta1_1 - theta1c_1 + 53.728;        
         error2_1 = theta2_1 - theta2c_1/4 + 42.68;      
 
@@ -160,28 +165,6 @@ void loop()
 
         correction1_1 = map(abs(c1_1), 0, 70, 0, 80);       
         correction2_1 = map(abs(c2_1), 0, 90, 0, 175);      //175
-
-//        Serial.print("x=");
-//        Serial.println(xe_1);       
-//        Serial.print("y=");
-//        Serial.println(ye_1);
-//        Serial.print("theta1_1=");
-//        Serial.println(theta1_1);
-//        Serial.print("theta1c_1=");
-//        Serial.println(theta1c_1-53.728);
-//        Serial.print("theta2c_1=");
-//        Serial.println(theta2c_1-42.68);        
-//        Serial.print("theta2_1=");
-//        Serial.println(theta2_1);
-//        Serial.print("c1_1=");
-//        Serial.println(c1_1);
-//        Serial.print("c2_1=");
-//        Serial.println(c2_1);
-//        Serial.print("pwm1=");
-//        Serial.println(correction1_1);
-//        Serial.print("pwm2=");
-//        Serial.println(correction2_1);
-//        Serial.println("------------------------");
 
         theta1_2 = 57.2958 * (cosine_rule(l2, l1, sqrt((xe_2 * xe_2) + (ye_2 * ye_2))) + alpha_2);
         theta2_2 = 57.2958 * (-3.14159 + cosine_rule(sqrt(xe_2 * xe_2 + ye_2 * ye_2), l1, l2));
@@ -200,28 +183,6 @@ void loop()
 
         correction1_2 = map(abs(c1_2), 0, 30, 0, 50);     //50
         correction2_2 = map(abs(c2_2), 0, 35, 0, 175);    //175
-
-        Serial.print("x=");
-        Serial.println(xe_2);       
-        Serial.print("y=");
-        Serial.println(ye_2);
-        Serial.print("theta1_2=");
-        Serial.println(theta1_2);
-        Serial.print("theta1c_2=");
-        Serial.println(theta1c_2-65.8795);
-        Serial.print("theta2c_2=");
-        Serial.println(theta2c_2-50.4);        
-        Serial.print("theta2_2=");
-        Serial.println(theta2_2);
-        Serial.print("c1_2=");
-        Serial.println(c1_2);
-        Serial.print("c2_2=");
-        Serial.println(c2_2);
-        Serial.print("pwm1=");
-        Serial.println(correction1_2);
-        Serial.print("pwm2=");
-        Serial.println(correction2_2);
-        Serial.println("------------------------");
  
         if (error1_1 < 0 ){
           upr_mtr_fwd_1();
@@ -265,14 +226,14 @@ void loop()
      
     }
 
-        for (float t = 0, u=0;t < 3.139,u < 5.34; t = t + 0.523,u = u + 0.89)       //0.01
+        for (double t = 0.1666, u=0.887;t < 1,u < 5.333; t = t + 0.1666,u = u + 0.887)       
         {
 
-      float xe_2 = 2 + 8 * cos(t);
-      float ye_2 = -45 + 6*sin(t);
+//      double xe_2 = 2 + 8 * cos(t);
+//      double ye_2 = -45 + 6*sin(t);
 
-      float xe_1 = -4 + u ;     
-      float ye_1 = -45 ;
+      double xe_1 = -4 + u ;     
+      double ye_1 = -45 ;
 
       if ( counter1_1 != temp1_1 ){
         temp1_1 = counter1_1;
@@ -316,21 +277,17 @@ void loop()
 
 
      
-        if (atan(ye_1/xe_1)>0)
-        {
+        if (atan(ye_1/xe_1)>0){
           alpha_1 = atan(ye_1 / xe_1) - 3.14159;
         }
-        else
-        {
+        else{
           alpha_1 = atan(ye_1 / xe_1);
         }
-
-        if (atan(ye_2 / xe_2) > 0)
-        {
+        if (atan(ye_2 / xe_2) > 0){
           alpha_2 = atan(ye_2 / xe_2) - 3.14159;
         }
-        else
-         { alpha_2 = atan(ye_2 / xe_2);
+        else{ 
+          alpha_2 = atan(ye_2 / xe_2);
          }
     
         theta1_1 = 57.2958 * (cosine_rule(l1,l2, sqrt(xe_1 * xe_1 + ye_1 * ye_1)) + alpha_1);
@@ -351,30 +308,17 @@ void loop()
         correction1_1 = map(abs(c1_1), 0, 30, 0, 50);       //50
         correction2_1 = map(abs(c2_1), 0, 35, 0, 175);      //175
 
-//        Serial.print("x=");
-//        Serial.println(xe_1);       
-//        Serial.print("y=");
-//        Serial.println(ye_1);
-//        Serial.print("theta1_1=");
-//        Serial.println(theta1_1);
-//        Serial.print("theta1c_1=");
-//        Serial.println(theta1c_1-53.728);
-//        Serial.print("theta2c_1=");
-//        Serial.println(theta2c_1-42.68);        
-//        Serial.print("theta2_1=");
-//        Serial.println(theta2_1);
-//        Serial.print("c1_1=");
-//        Serial.println(c1_1);
-//        Serial.print("c2_1=");
-//        Serial.println(c2_1);
-//        Serial.print("pwm1=");
-//        Serial.println(correction1_1);
-//        Serial.print("pwm2=");
-//        Serial.println(correction2_1);
-//        Serial.println("------------------------");
+//        theta1_2 = 57.2958 * (cosine_rule(l2, l1, sqrt((xe_2 * xe_2) + (ye_2 * ye_2))) + alpha_2);
+//        theta2_2 = 57.2958 * (-3.14159 + cosine_rule(sqrt(xe_2 * xe_2 + ye_2 * ye_2), l1, l2));
 
-        theta1_2 = 57.2958 * (cosine_rule(l2, l1, sqrt((xe_2 * xe_2) + (ye_2 * ye_2))) + alpha_2);
-        theta2_2 = 57.2958 * (-3.14159 + cosine_rule(sqrt(xe_2 * xe_2 + ye_2 * ye_2), l1, l2));
+        if(t<0.5){
+            theta1_2=theta(theta1AT1_2,theta1_AT1_2,theta1__AT1_2,theta1AT2_2,theta1_AT2_2,theta1__AT2_2,t);
+            theta2_2=theta(theta2AT1_2,theta2_AT1_2,theta2__AT1_2,theta2AT2_2,theta2_AT2_2,theta2__AT2_2,t);
+        }
+        else{
+            theta1_2=theta(theta1AT2_2,theta1_AT2_2,theta1__AT2_2,theta1AT3_2,theta1_AT3_2,theta1__AT3_2,t);
+            theta2_2=theta(theta2AT2_2,theta2_AT2_2,theta2__AT2_2,theta2AT3_2,theta2_AT3_2,theta2__AT3_2,t);
+        }
 
         error1_2 = theta1_2 - theta1c_2 + 65.8795;         
         error2_2 = theta2_2 - theta2c_2/4 + 50.4; 
@@ -390,28 +334,6 @@ void loop()
 
         correction1_2 = map(abs(c1_2), 0, 70, 0, 80 );
         correction2_2 = map(abs(c2_2), 0, 90, 0, 175);
-
-        Serial.print("x=");
-        Serial.println(xe_2);       
-        Serial.print("y=");
-        Serial.println(ye_2);
-        Serial.print("theta1_2=");
-        Serial.println(theta1_2);
-        Serial.print("theta1c_2=");
-        Serial.println(theta1c_2-65.8795);
-        Serial.print("theta2c_2=");
-        Serial.println(theta2c_2-50.4);        
-        Serial.print("theta2_2=");
-        Serial.println(theta2_2);
-        Serial.print("c1_2=");
-        Serial.println(c1_2);
-        Serial.print("c2_2=");
-        Serial.println(c2_2);
-        Serial.print("pwm1=");
-        Serial.println(correction1_2);
-        Serial.print("pwm2=");
-        Serial.println(correction2_2);
-        Serial.println("------------------------");
 
  
         if (error1_1 < 0 ){
@@ -456,14 +378,14 @@ void loop()
      
     }
 
-        for (float u=0.005 ; u < 10.68 ; u = u + 0.89)
+        for (double u=0.888 ; u < 10.666 ; u = u + 0.888)
         {
 
-      float xe_2 = -6 + u;
-      float ye_2 = -45;
+      double xe_2 = -6 + u;
+      double ye_2 = -45;
 
-      float xe_1 = 1.3333 + u ;      
-      float ye_1 = -45 ;
+      double xe_1 = 1.3333 + u ;      
+      double ye_1 = -45 ;
 
       if ( counter1_1 != temp1_1 ){
         temp1_1 = counter1_1;
@@ -506,22 +428,18 @@ void loop()
       }
 
 
-        if (atan(ye_1/xe_1)>0)
-        {
+        if (atan(ye_1/xe_1)>0){
           alpha_1 = atan(ye_1 / xe_1) - 3.14159;
         }
-        else
-        {
+        else{
           alpha_1 = atan(ye_1 / xe_1);
         }
-
-        if (atan(ye_2 / xe_2) > 0)
-        {
+        if (atan(ye_2 / xe_2) > 0){
           alpha_2 = atan(ye_2 / xe_2) - 3.14159;
         }
-        else
-         { alpha_2 = atan(ye_2 / xe_2);
-         }
+        else{ 
+          alpha_2 = atan(ye_2 / xe_2);
+        }
     
         theta1_1 = 57.2958 * (cosine_rule(l1,l2, sqrt(xe_1 * xe_1 + ye_1 * ye_1)) + alpha_1);
         theta2_1 = 57.2958 * (-3.14159 + cosine_rule(sqrt(xe_1 * xe_1 + ye_1 * ye_1), l1, l2));
@@ -539,29 +457,7 @@ void loop()
         prev_error2_1 = error2_1;
 
         correction1_1 = map(abs(c1_1), 0, 30, 0, 50);     //50
-        correction2_1 = map(abs(c2_1), 0, 35, 0, 175);     
-
-//        Serial.print("x=");
-//        Serial.println(xe_1);       
-//        Serial.print("y=");
-//        Serial.println(ye_1);
-//        Serial.print("theta1_1=");
-//        Serial.println(theta1_1);
-//        Serial.print("theta1c_1=");
-//        Serial.println(theta1c_1-53.728);
-//        Serial.print("theta2c_1=");
-//        Serial.println(theta2c_1-42.68);        
-//        Serial.print("theta2_1=");
-//        Serial.println(theta2_1);
-//        Serial.print("c1_1=");
-//        Serial.println(c1_1);
-//        Serial.print("c2_1=");
-//        Serial.println(c2_1);
-//        Serial.print("pwm1=");
-//        Serial.println(correction1_1);
-//        Serial.print("pwm2=");
-//        Serial.println(correction2_1);
-//        Serial.println("------------------------");
+        correction2_1 = map(abs(c2_1), 0, 35, 0, 175);    //175
 
         theta1_2 = 57.2958 * (cosine_rule(l2, l1, sqrt((xe_2 * xe_2) + (ye_2 * ye_2))) + alpha_2);
         theta2_2 = 57.2958 * (-3.14159 + cosine_rule(sqrt(xe_2 * xe_2 + ye_2 * ye_2), l1, l2));
@@ -580,29 +476,6 @@ void loop()
 
         correction1_2 = map(abs(c1_2), 0, 30, 0, 50);   //50
         correction2_2 = map(abs(c2_2), 0, 35, 0, 175);    //175
-
-        Serial.print("x=");
-        Serial.println(xe_2);       
-        Serial.print("y=");
-        Serial.println(ye_2);
-        Serial.print("theta1_2=");
-        Serial.println(theta1_2);
-        Serial.print("theta1c_2=");
-        Serial.println(theta1c_2-65.8795);
-        Serial.print("theta2c_2=");
-        Serial.println(theta2c_2-50.4);        
-        Serial.print("theta2_2=");
-        Serial.println(theta2_2);
-        Serial.print("c1_2=");
-        Serial.println(c1_2);
-        Serial.print("c2_2=");
-        Serial.println(c2_2);
-        Serial.print("pwm1=");
-        Serial.println(correction1_2);
-        Serial.print("pwm2=");
-        Serial.println(correction2_2);
-        Serial.println("------------------------");
-
  
         if (error1_1 < 0 ){
           upr_mtr_fwd_1();
@@ -648,16 +521,51 @@ void loop()
 
 }
 
+//        Serial.print("x=");
+//        Serial.println(xe_1);       
+//        Serial.print("y=");
+//        Serial.println(ye_1);
+//        Serial.print("theta1_1=");
+//        Serial.println(theta1_1);
+//        Serial.print("theta1c_1=");
+//        Serial.println(theta1c_1-53.728);
+//        Serial.print("theta2c_1=");
+//        Serial.println(theta2c_1-42.68);        
+//        Serial.print("theta2_1=");
+//        Serial.println(theta2_1);
+//        Serial.print("c1_1=");
+//        Serial.println(c1_1);
+//        Serial.print("c2_1=");
+//        Serial.println(c2_1);
+//        Serial.print("pwm1=");
+//        Serial.println(correction1_1);
+//        Serial.print("pwm2=");
+//        Serial.println(correction2_1);
+//        Serial.println("------------------------");
 
-  float cosine_rule(float c, float b, float a){
-    float x = ( a * a + b * b - c * c ) / ( 2 * a * b );
+  double theta(double thet1,double thet1_,double thet1__,double thet2,double thet2_,double thet2__,double t){
+    double a,b,c,d,e,f;
+
+    a=thet1;
+    b=thet1_;
+    c=thet1__/2;
+    d=(20*(thet2-thet1)-(8*thet2_+12*thet1_)*0.5+(3*thet1__-thet2__)*0.5*0.5)/(2*0.5*0.5*0.5);
+    e=(30*(thet1-thet2)+(14*thet2_+16*thet1_)*0.5+(3*thet1__-2*thet2__)*0.5*0.5)/(2*0.5*0.5*0.5*0.5);
+    f=(12*(thet2-thet1)-(6*thet2_+6*thet1_)*0.5-(thet1__-thet2__)*0.5*0.5)/(2*0.5*0.5*0.5*0.5*0.5);
+    
+    return (a+b*t+c*t*t+d*t*t*t+e*t*t*t*t+f*t*t*t*t*t);
+  }
+
+  
+  double cosine_rule(double c, double b, double a){
+    double x = ( a * a + b * b - c * c ) / ( 2 * a * b );
     return acos(x);
   }
 
   void upr_mtr_fwd_1(){
     digitalWrite(motor1_1, HIGH);
   }
-
+  
   void upr_mtr_bwd_1(){
     digitalWrite(motor1_1, LOW);
   }
